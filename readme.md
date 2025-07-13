@@ -1,4 +1,4 @@
-# ⚡️ vantagex Monorepo Setup
+# ⚡️ React Monorepo
 
 This repository is a modern monorepo boilerplate using **React 19**, **Rsbuild**, and other cutting-edge tools. It includes fast builds, strict code quality, and a scalable architecture for large React applications.
 

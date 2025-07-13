@@ -1,0 +1,24 @@
+{
+   "name": "react-micro-frontend",
+   "private": true,
+   "workspaces": [
+      "apps/*",
+      "packages/*"
+   ],
+   "scripts": {
+      "clean": "git clean -xdf node_modules",
+      "clean:workspaces": "turbo clean",
+      "format": "biome format --write ."
+   },
+   "dependencies": {
+      "@biomejs/biome": "2.1.1",
+      "@repo/tsconfig": "workspace:*",
+      "turbo": "2.5.4",
+      "typescript": "^5.8.3"
+   },
+   "engines": {
+      "node": ">=20",
+      "pnpm": ">=10"
+   },
+   "packageManager": "pnpm@10.13.1"
+}

@@ -1,0 +1,49 @@
+{
+   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+   "assist": {
+      "actions": {
+         "source": {
+            "organizeImports": "on"
+         }
+      }
+   },
+   "linter": {
+      "enabled": true,
+      "rules": {
+         "recommended": true,
+         "a11y": { "recommended": true },
+         "performance": { "recommended": true },
+         "security": { "recommended": true },
+         "complexity": {
+            "recommended": true,
+            "noBannedTypes": "off",
+            "useArrowFunction": "error"
+         },
+         "style": {
+            "recommended": true,
+            "noDefaultExport": "off",
+            "noImplicitBoolean": "error",
+            "noNonNullAssertion": "warn"
+         },
+         "correctness": {
+            "recommended": true,
+            "noUnusedImports": "error",
+            "noUnusedVariables": "error",
+            "useHookAtTopLevel": "error",
+            "noEmptyPattern": "off"
+         },
+         "suspicious": {
+            "recommended": true,
+            "noConsole": "error",
+            "noDebugger": "error",
+            "useAwait": "error"
+         },
+         "nursery": { "useSortedClasses": "off" }
+      }
+   },
+   "formatter": {
+      "indentStyle": "space",
+      "indentWidth": 3,
+      "lineWidth": 80
+   }
+}

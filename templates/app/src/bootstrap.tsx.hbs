@@ -1,0 +1,6 @@
+import loadable from "@loadable/component";
+
+(async () => {
+	const App = loadable(() => import("./App"));
+	await WrapAppWithModuleFederation(<App />);
+})();

@@ -1,0 +1,10 @@
+{
+   "name": "@repo/rsb-config",
+   "version": "0.0.0",
+   "private": true,
+   "devDependencies": {
+      "@module-federation/sdk": "^0.14.3",
+      "@rsbuild/plugin-react": "^1.3.4",
+      "@rsbuild/plugin-type-check": "^1.2.2"
+   }
+}

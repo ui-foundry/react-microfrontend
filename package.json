@@ -15,7 +15,10 @@
       "@biomejs/biome": "2.1.1",
       "@commitlint/cli": "^19.8.1",
       "@commitlint/config-conventional": "^19.8.1",
+      "@repo/rsb-config": "workspace:*",
       "@repo/tsconfig": "workspace:*",
+      "@rsbuild/core": "^1.4.6",
+      "@types/node": "^24.0.13",
       "lefthook": "^1.12.2",
       "turbo": "2.5.4",
       "typescript": "^5.8.3"

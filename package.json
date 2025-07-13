@@ -8,11 +8,15 @@
    "scripts": {
       "clean": "git clean -xdf node_modules",
       "clean:workspaces": "turbo clean",
-      "format": "biome format --write ."
+      "format": "biome format --write .",
+      "prepare": "lefthook install"
    },
-   "dependencies": {
+   "devDependencies": {
       "@biomejs/biome": "2.1.1",
+      "@commitlint/cli": "^19.8.1",
+      "@commitlint/config-conventional": "^19.8.1",
       "@repo/tsconfig": "workspace:*",
+      "lefthook": "^1.12.2",
       "turbo": "2.5.4",
       "typescript": "^5.8.3"
    },

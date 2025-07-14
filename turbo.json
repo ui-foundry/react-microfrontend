@@ -11,7 +11,11 @@
          "cache": false,
          "persistent": true
       },
-      "clean": {},
-      "format": {}
+      "clean": {
+         "cache": false
+      },
+      "format": {
+         "cache": false
+      }
    }
 }

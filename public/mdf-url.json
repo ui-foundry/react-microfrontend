@@ -1,0 +1,7 @@
+[
+   {
+      "name": "remoteOne",
+      "alias": "remoteOne",
+      "entry": "http://localhost:3001/remote-entry.js"
+   }
+]

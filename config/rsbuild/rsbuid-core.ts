@@ -20,10 +20,7 @@ const plugins: BundlerPluginInstance[] = [
 const copyPublicDir = () => {
    if (!isProd) return [];
    return {
-      patterns: [
-         { from: "public", context: path.join(root) },
-         { from: "public" },
-      ],
+      patterns: [{ from: "public", context: path.join(root) }, { from: "public" }],
    };
 };
 

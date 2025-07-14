@@ -1,0 +1,13 @@
+{
+   "extends": "@repo/tsconfig/react-library.json",
+   "compilerOptions": {
+      "outDir": "dist",
+      "noImplicitAny": true,
+      "allowSyntheticDefaultImports": true,
+      "jsx": "react-jsx",
+      "baseUrl": ".",
+      "paths": {}
+   },
+   "include": ["src"],
+   "exclude": ["dist"]
+}

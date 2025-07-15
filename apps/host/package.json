@@ -1,0 +1,17 @@
+{
+   "name": "host",
+   "private": true,
+   "version": "1.0.0",
+   "scripts": {
+      "dev": "rsbuild dev",
+      "build": "rsbuild build",
+      "preview": "rsbuild preview"
+   },
+   "dependencies": {
+      "@repo/core": "workspace:*"
+   },
+   "devDependencies": {
+      "@unocss/postcss": "^66.3.3",
+      "unocss": "^66.3.3"
+   }
+}

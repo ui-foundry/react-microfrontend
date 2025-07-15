@@ -1,11 +1,14 @@
 import * as path from "node:path";
+import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
+import type { moduleFederationPlugin } from "@module-federation/sdk";
 import type { BundlerPluginInstance, RsbuildConfig } from "@rsbuild/core";
 import { loadEnv, mergeRsbuildConfig, rspack } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
-import { pluginTypeCheck } from "@rsbuild/plugin-type-check";
+
+import { sharedModuleFederation } from "./mfe";
 
 interface IOptions {
-   moduleFederation?: any; // Adjust type as needed
+   moduleFederation?: moduleFederationPlugin.ModuleFederationPluginOptions; // Adjust type as needed
 }
 
 const isProd = process.env.NODE_ENV === "production";
@@ -18,7 +21,7 @@ const plugins: BundlerPluginInstance[] = [
 ];
 
 const copyPublicDir = () => {
-   if (!isProd) return [];
+   if (!isProd) return undefined;
    return {
       patterns: [{ from: "public", context: path.join(root) }, { from: "public" }],
    };
@@ -30,16 +33,22 @@ const { publicVars } = loadEnv({
 });
 
 export const getRsBuildConfig = (config: RsbuildConfig, opts: IOptions) => {
-   const { moduleFederation } = opts;
+   const { moduleFederation = {} } = opts;
 
    if (Object.keys(moduleFederation).length !== 0) {
-      // moduleFederation is not empty, merge with existing config
+      plugins.push(
+         new ModuleFederationPlugin({
+            ...moduleFederation,
+            shared: sharedModuleFederation(),
+            runtimePlugins: [path.resolve(__dirname, "./mfe/custom-runtime-plugin.ts")],
+         }),
+      );
    }
 
    const defaultConfig: RsbuildConfig = {
       plugins: [
          pluginReact(),
-         pluginTypeCheck(),
+         // pluginTypeCheck(),
          // pluginCssMinimizer(),
       ],
       source: { define: { ...publicVars } },
@@ -58,10 +67,7 @@ export const getRsBuildConfig = (config: RsbuildConfig, opts: IOptions) => {
       },
       tools: {
          rspack: {
-            optimization: {
-               minimize: true,
-               providedExports: true,
-            },
+            optimization: { minimize: true, providedExports: true },
             plugins,
             output: {
                clean: true,

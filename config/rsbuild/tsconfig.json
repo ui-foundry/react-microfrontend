@@ -1,0 +1,10 @@
+{
+   "extends": "@repo/tsconfig/react-library.json",
+   "compilerOptions": {
+      "outDir": "dist",
+      "noImplicitAny": true,
+      "allowSyntheticDefaultImports": true,
+      "types": ["node", "@repo/tsconfig/remote.d.ts"]
+   },
+   "include": ["mfe"]
+}

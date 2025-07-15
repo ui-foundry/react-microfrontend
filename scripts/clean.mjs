@@ -2,13 +2,18 @@ import fg from "fast-glob";
 import ora from "ora";
 import { rimraf } from "rimraf";
 
-const node_modules_folders = await fg("**/node_modules", {
-   onlyDirectories: true,
-   ignore: ["**/node_modules/**/node_modules"], // skip nested
-});
+const folderNames = ["node_modules", ".turbo", "dist"];
 
-// Add any additional folders you want to clean up
-const foldersToDelete = ["pnpm-lock.yaml", ...node_modules_folders];
+const foundFolders = await Promise.all(
+   folderNames.map((name) =>
+      fg(`**/${name}`, {
+         onlyDirectories: true,
+         ignore: [`**/${name}/**/${name}`],
+      }),
+   ),
+);
+
+const foldersToDelete = ["pnpm-lock.yaml", ...foundFolders.flat()];
 
 const clean = async () => {
    const spinner = ora("Starting cleanup...").start();

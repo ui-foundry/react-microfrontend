@@ -5,8 +5,7 @@
       "noImplicitAny": true,
       "allowSyntheticDefaultImports": true,
       "jsx": "react-jsx",
-      "baseUrl": ".",
-      "paths": {}
+      "types": ["node", "@repo/tsconfig/remote.d.ts"]
    },
    "include": ["src"],
    "exclude": ["dist"]

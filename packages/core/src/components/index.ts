@@ -1,1 +1,1 @@
-export { ModuleFederationWrapper } from "./module-federation-wrapper";
+export { WrapModuleFederation } from "./wrap-module-federation";

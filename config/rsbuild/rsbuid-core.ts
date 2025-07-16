@@ -64,7 +64,7 @@ export const getRsBuildConfig = (config: RsbuildConfig, opts: IOptions) => {
       output: {
          assetPrefix: "/",
          cleanDistPath: true,
-         filenameHash: false,
+         filenameHash: "fullhash:8",
          sourceMap: { js: isProd ? false : "source-map" },
          copy: copyPublicDir(),
       },
@@ -74,6 +74,7 @@ export const getRsBuildConfig = (config: RsbuildConfig, opts: IOptions) => {
             plugins,
             output: {
                clean: true,
+               // filename: isProd ? "[name].[contenthash].js" : "[name].js",
                publicPath: isProd ? "auto" : `http://localhost:${config.server?.port}/`,
             },
          },

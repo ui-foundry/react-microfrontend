@@ -35,7 +35,6 @@ const App = () => {
                remote app
             </NavLink>
          </nav>
-
          <div>
             <h1>React Monorepo!</h1>
             <p>This is host app count: {count}</p>
@@ -43,7 +42,6 @@ const App = () => {
                Increment count
             </button>
          </div>
-
          <Routes>
             <Route path="/" element={<Outlet />}>
                <Route

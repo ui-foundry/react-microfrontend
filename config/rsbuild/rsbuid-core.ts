@@ -64,7 +64,7 @@ export const getRsBuildConfig = (config: RsbuildConfig, opts: IOptions) => {
       output: {
          assetPrefix: "/",
          cleanDistPath: true,
-         filenameHash: "fullhash:8",
+         filenameHash: "chunkhash:8",
          sourceMap: { js: isProd ? false : "source-map" },
          copy: copyPublicDir(),
       },

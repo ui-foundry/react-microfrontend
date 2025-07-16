@@ -3,7 +3,9 @@ import { ModuleFederationPlugin } from "@module-federation/enhanced/rspack";
 import type { moduleFederationPlugin } from "@module-federation/sdk";
 import type { BundlerPluginInstance, RsbuildConfig } from "@rsbuild/core";
 import { loadEnv, mergeRsbuildConfig, rspack } from "@rsbuild/core";
+import { pluginCssMinimizer } from "@rsbuild/plugin-css-minimizer";
 import { pluginReact } from "@rsbuild/plugin-react";
+import { pluginTypeCheck } from "@rsbuild/plugin-type-check";
 
 import { sharedModuleFederation } from "./mfe";
 
@@ -46,12 +48,13 @@ export const getRsBuildConfig = (config: RsbuildConfig, opts: IOptions) => {
    }
 
    const defaultConfig: RsbuildConfig = {
-      plugins: [
-         pluginReact(),
-         // pluginTypeCheck(),
-         // pluginCssMinimizer(),
-      ],
-      source: { define: { ...publicVars } },
+      plugins: [pluginReact(), pluginTypeCheck(), pluginCssMinimizer()],
+      source: {
+         define: { ...publicVars, RELEASE_TIME: new Date() },
+      },
+      resolve: {
+         aliasStrategy: "prefer-tsconfig",
+      },
       server: {
          publicDir: [
             { name: path.join(root, "public"), copyOnBuild: true, watch: true },
@@ -62,8 +65,8 @@ export const getRsBuildConfig = (config: RsbuildConfig, opts: IOptions) => {
          assetPrefix: "/",
          cleanDistPath: true,
          filenameHash: false,
-         copy: copyPublicDir(),
          sourceMap: { js: isProd ? false : "source-map" },
+         copy: copyPublicDir(),
       },
       tools: {
          rspack: {
@@ -71,7 +74,7 @@ export const getRsBuildConfig = (config: RsbuildConfig, opts: IOptions) => {
             plugins,
             output: {
                clean: true,
-               publicPath: `http://localhost:${config.server?.port}/`,
+               publicPath: isProd ? "auto" : `http://localhost:${config.server?.port}/`,
             },
          },
       },

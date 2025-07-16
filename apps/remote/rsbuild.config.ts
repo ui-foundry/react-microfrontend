@@ -3,11 +3,7 @@ import { defineConfig } from "@rsbuild/core";
 
 export default defineConfig(
    getRsBuildConfig(
-      {
-         server: {
-            port: 3001,
-         },
-      },
+      { server: { port: 3001 } },
       {
          moduleFederation: {
             dts: false,
